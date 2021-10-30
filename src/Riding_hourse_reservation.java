@@ -3,7 +3,7 @@ import java.util.*;
 public class Riding_hourse_reservation {
 
     
-    static ArrayList <Customer>customers = new ArrayList();
+    static ArrayList <Customer> customers = new ArrayList();
     
     public static void main(String[] args) {
         
