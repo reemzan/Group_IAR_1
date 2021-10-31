@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Riding_hourse_reservation {
 
-    
+    // ArrayList to store customers' information
     static ArrayList <Customer> customers = new ArrayList();
     
     public static void main(String[] args) {
@@ -16,6 +16,7 @@ public class Riding_hourse_reservation {
         // Welcome page
         System.out.println("welcome to hourse Riding reservation");
         System.out.println();
+        // Integer input and loop to determine the user's choice (signup or login)
         int userChoise = 0;
         while (userChoise != 1 || userChoise != 2){ 
             System.out.println("type 1 to sign up");
@@ -28,19 +29,14 @@ public class Riding_hourse_reservation {
                 login(input)
                  break;
             } else {
+                // Error message if the input is neither 1 nor 2
                 System.out.println();
-                System.out.println("wrong input try again, or type '3'");
-                if(userChoise == 3)
-                    
+                System.out.println("wrong input try again");
             }
-        
         }
-        
-        
-        
-        
     }
     
+    // signup method, takes info of new customer then store it
     public static void sign_up (Scanner input){
         
         System.out.println();
@@ -55,20 +51,22 @@ public class Riding_hourse_reservation {
         System.out.print("Enter Email: ");
         String email = input.next();
         
-        
+        // checks if the entered email already exists or not
         for (int i = 0; i < customers.size(); i++) {
-            Customer tem = customers.get(i);
-            if(email.equalsIgnoreCase(tem.getEmail())){
-                
+            Customer temp = customers.get(i);
+            if(email.equalsIgnoreCase(temp.getEmail())){
+                // allow the customer to login if the email is already exist 
                 System.out.println();
                 System.out.println("email already exist.");
                 System.out.print("type 'yes' if you want to login to the account: ");
                 
+                // redirect to login page
                 String answer = input.next();
                 if (answer.equalsIgnoreCase("yes")) {
                     login(input);
                 }else{
-                    while(email.equalsIgnoreCase(tem.getEmail())){
+                    // Error message 
+                    while(email.equalsIgnoreCase(temp.getEmail())){
                         System.out.println("try again or type 'exit' ");
                         System.out.print("Enter email: ");
                         email = input.next();
@@ -80,22 +78,24 @@ public class Riding_hourse_reservation {
             }
         }
         
-        
+        // checks if the entered phone number is valid
         System.out.print("Enter phone number: ");
         String Phone = input.next();
         while (Phone.length() != 10){
             System.out.print("phone number is not 10 digits try again: ");
             Phone = input.next();
         }
+        // create a new customer object when all info are valid 
         long phone=Long.parseLong(Phone);
         Customer new_customer = new Customer(username, password, email, phone);
         
         
-            
+        // add to customers ArrayList
         customers.add(new_customer);
         
     }
     
+    // login method, allow the user to access the application  
     public static void login(Scanner input){
         
         System.out.println();
@@ -107,17 +107,17 @@ public class Riding_hourse_reservation {
         String password = input.next();
         
         for (int i = 0; i < customers.size(); i++) {
-            Customer tem = customers.get(i);
-            if(email.equalsIgnoreCase(tem.getEmail())){
+            Customer temp = customers.get(i);
+            if(email.equalsIgnoreCase(temp.getEmail())){
                 
                 //email correct, password correct
-                if(password.equalsIgnoreCase(tem.getPassword())){
+                if(password.equalsIgnoreCase(temp.getPassword())){
                     ///////////
                     
                 }else{
                     //email correct, password incorrect
                     System.out.println("ERROR, wrong password");
-                    while(!password.equalsIgnoreCase(tem.getPassword())){
+                    while(!password.equalsIgnoreCase(temp.getPassword())){
                         System.out.println("try again or type 'exit' ");
                         System.out.print("Enter password: ");
                         password = input.next();
