@@ -5,6 +5,7 @@ public class Customer {
     private String email;
     private long phonenum;
 
+    // Constructor to create a new customer and store their info
     public Customer(String username, String password, String email, long phonenum) {
         this.username = username;
         this.password = password;
@@ -12,6 +13,7 @@ public class Customer {
         this.phonenum = phonenum;
     }
 
+    // getters and setters for each variable
     public String getUsername() {
         return username;
     }
