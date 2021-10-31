@@ -17,15 +17,15 @@ public class Riding_hourse_reservation {
         System.out.println("welcome to hourse Riding reservation");
         System.out.println();
         // Integer input and loop to determine the user's choice (signup or login)
-        int userChoise = 0;
-        while (userChoise != 1 || userChoise != 2){ 
+        int userChoice = 0;
+        while (userChoice != 1 || userChoice != 2){ 
             System.out.println("type 1 to sign up");
             System.out.println("type 2 to login");
-            userChoise = input.nextInt();
-            if (userChoise == 1){
+            userChoice = input.nextInt();
+            if (userChoice == 1){
                 sign_up(input);
                 break;
-            } else if (userChoise == 2) {
+            } else if (userChoice == 2) {
                 login(input)
                  break;
             } else {
