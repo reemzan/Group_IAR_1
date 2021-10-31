@@ -7,29 +7,30 @@ public class Riding_hourse_reservation {
     
     public static void main(String[] args) {
         
-       
+        Customer new_customer = new Customer("s", "s", "s", 1);
+        Customer new_customer2 = new Customer("s", "s", "s", 1);
+        customers.add(new_customer);
+        customers.add(new_customer2);
         
-        
-        
-        while(true){
         Scanner input = new Scanner(System.in);
-        System.out.println("welcome to Riding hourse reservation");
+        // Welcome page
+        System.out.println("welcome to hourse Riding reservation");
         System.out.println();
-        int choise = 0;
-        while (choise != 1 || choise != 2){
+        int userChoise = 0;
+        while (userChoise != 1 || userChoise != 2){ 
             System.out.println("type 1 to sign up");
             System.out.println("type 2 to login");
-            choise = input.nextInt();
-            if (choise == 1){
+            userChoise = input.nextInt();
+            if (userChoise == 1){
                 sign_up(input);
                 break;
-            } else if (choise == 2) {
-                login(input);
+            } else if (userChoise == 2) {
+                login(input)
                  break;
             } else {
                 System.out.println();
                 System.out.println("wrong input try again, or type '3'");
-                if(choise == 3)
+                if(userChoise == 3)
                     System.exit(0);
             }
         
@@ -72,7 +73,7 @@ public class Riding_hourse_reservation {
                         System.out.print("Enter email: ");
                         email = input.next();
                         if(email.equalsIgnoreCase("exit"))
-                            
+                            System.exit(0);
                     }
                 } 
                 
@@ -121,7 +122,7 @@ public class Riding_hourse_reservation {
                         System.out.print("Enter password: ");
                         password = input.next();
                         if(password.equalsIgnoreCase("exit"))
-                            
+                            System.exit(0);
                     }
                     
                     
@@ -132,5 +133,4 @@ public class Riding_hourse_reservation {
                 System.out.println("ERROR, email is not stored ");
         }
     }
-}
 }
