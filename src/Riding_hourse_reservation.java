@@ -31,7 +31,7 @@ public class Riding_hourse_reservation {
                 System.out.println();
                 System.out.println("wrong input try again, or type '3'");
                 if(userChoise == 3)
-                    System.exit(0);
+                    
             }
         
         }
