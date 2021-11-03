@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class Hourse_Riding_Reservation {
@@ -90,19 +89,26 @@ public class Hourse_Riding_Reservation {
         }
 
         // create a new customer object when all info are valid 
-        long phone = Long.parseLong(Phone);
-
-        Customer new_customer = new Customer(username, password, email, phone);
+        
+        try{
+          long phone = Long.parseLong(Phone);
+              Customer new_customer = new Customer(username, password, email, phone);
 
         // add to customers ArrayList   
         customers.add(new_customer);
         System.out.println("");
         System.out.println("You have signed up succefully");
         System.out.println("");
+        }catch(Exception ex){
+            System.out.println("Error!");
+            System.out.println("Enter a valid phone number");
+        }
+
+      
 
     }
 
-    // login method, allow the user to access the application
+     // login method, allow the user to access the application
     public static void login(Scanner input) {
 
         System.out.println();
@@ -133,9 +139,12 @@ public class Hourse_Riding_Reservation {
                         System.out.print("Enter password: ");
                         password = input.next();
                         if (password.equalsIgnoreCase("exit")) {
-                            System.exit(0);
+                            break;
                         }
                     }
+                    System.out.println("");
+                    System.out.println("You have logged in succefully");
+                    System.out.println("");
                 }
                 key = 1;
             }
