@@ -1,3 +1,4 @@
+
 import java.util.*;
 
 public class Hourse_Riding_Reservation {
@@ -13,14 +14,14 @@ public class Hourse_Riding_Reservation {
         System.out.println();
 
         // Integer input and loop to determine the user's choice (signup or login)
-        int choise = 0;
-        while (choise != 1 || choise != 2) {
+        int choice = 0;
+        while (choice != 1 || choice != 2) {
             System.out.println("type 1 to sign up");
             System.out.println("type 2 to login");
-            choise = input.nextInt();
-            if (choise == 1) {
+            choice = input.nextInt();
+            if (choice == 1) {
                 sign_up(input);
-            } else if (choise == 2) {
+            } else if (choice == 2) {
                 login(input);
 
             } else {
@@ -89,26 +90,23 @@ public class Hourse_Riding_Reservation {
         }
 
         // create a new customer object when all info are valid 
-        
-        try{
-          long phone = Long.parseLong(Phone);
-              Customer new_customer = new Customer(username, password, email, phone);
+        try {
+            long phone = Long.parseLong(Phone);
+            Customer new_customer = new Customer(username, password, email, phone);
 
-        // add to customers ArrayList   
-        customers.add(new_customer);
-        System.out.println("");
-        System.out.println("You have signed up succefully");
-        System.out.println("");
-        }catch(Exception ex){
+            // add to customers ArrayList   
+            customers.add(new_customer);
+            System.out.println("");
+            System.out.println("You have signed up succefully");
+            System.out.println("");
+        } catch (Exception ex) {
             System.out.println("Error!");
             System.out.println("Enter a valid phone number");
         }
 
-      
-
     }
 
-     // login method, allow the user to access the application
+    // login method, allow the user to access the application
     public static void login(Scanner input) {
 
         System.out.println();
