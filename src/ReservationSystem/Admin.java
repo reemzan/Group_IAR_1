@@ -1,4 +1,3 @@
-
 package ReservationSystem;
 
 import static ReservationSystem.Reservation.Reservations;
@@ -85,18 +84,38 @@ public class Admin {
                     System.out.println("");
                     
                     //---------------------------------------------------------------------------------------------------------------------
-                    System.out.println("add new reservation");
-                    admin.get(i).AddReservation(input);
+                       int choise = 0;
+        while (choise != 1 || choise != 2 || choise != 3) {
+            System.out.println("type 1 add reservation");
+            System.out.println("type 2 to view reservation");
+            System.out.println("type 3 to delete reservation");
+            System.out.println("type 4 to logout");
+            choise = input.nextInt();
+            switch (choise) {
+                case 1:
+                    tem.AddReservation(input);
                     
-                    //'''''''''''''''''''''''''''''''''''''''''''''''''''''' print للتأكد
-                    for (int y = 0; y < Reservations.size(); y++) {
-                     Reservation tem1 = Reservations.get(i);
-                        System.out.println(tem1.getPrice());
-                        System.out.println(tem1.getReservationDate());
-                   //'''''''''''''''''''''''''''''''''''''''''''''''''''''''     
-                       
-                    }
-                    //---------------------------------------------------------------------------------------------------------------------
+                    
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                   
+                    break;
+                    case 4:
+                    return;
+                
+                default:
+                    System.out.println();
+                    System.out.println("wrong input try again");
+                    break;
+            }
+        }
+                    
+                    
+                    
+                    
 
                 } else {
                     //email correct, password incorrect
@@ -127,14 +146,17 @@ public class Admin {
         System.out.println("enter reservation date");
         String ReservationDate = input.next();
         System.out.println("enter reservation time");
-        String ReservationTime = input.next();;
+        String ReservationTime = input.next();
         System.out.println("enter number of visitors");
-        int VisitorNum = input.nextInt();;
+        int VisitorNum = input.nextInt();
         System.out.println("enter price");
         double price = input.nextDouble();
         boolean Available = true;
         Reservation new_reservation = new Reservation(ReservationDate, ReservationTime,  VisitorNum,price, Available);
         Reservations.add(new_reservation);
+        System.out.println("");
+        System.out.println("the new reservation has been added : "+new_reservation.toString());
+        System.out.println("");
         
         
     }

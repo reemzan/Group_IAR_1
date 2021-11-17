@@ -2,6 +2,7 @@ package ReservationSystem;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import static ReservationSystem.Reservation.Reservations;
 
 public class Customer {
     
@@ -149,6 +150,32 @@ public class Customer {
                     System.out.println("");
                     System.out.println("You have logged in succefully");
                     System.out.println("");
+                    int choise = 0;
+        while (choise != 1 || choise != 2 || choise != 3) {
+            System.out.println("type 1 make reservation");
+            System.out.println("type 2 to view reservation");
+            System.out.println("type 3 to delete reservation");
+            System.out.println("type 4 to logout");
+            choise = input.nextInt();
+            switch (choise) {
+                case 1:
+                    tem.MakeReservation(input);
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                   
+                    break;
+                    case 4:
+                    return;
+                
+                default:
+                    System.out.println();
+                    System.out.println("wrong input try again");
+                    break;
+            }
+        }
 
                 } else {
                     //email correct, password incorrect
@@ -175,13 +202,59 @@ public class Customer {
         }
     }
     
-    public void MakeReservation(){
+    public void MakeReservation(Scanner input){
+        
+        for (int i = 0; i < Reservations.size(); i++) {
+            if (Reservations.get(i).isAvailable()==true) {
+                System.out.println((i + 1) + "- " + Reservations.get(i).toString());
+            }
+            
+        }
         
         
+        if(Reservations.isEmpty()){
+                System.out.println("there is no available reservations");
+            }
+        else if(Reservation.isReservationsFull()){
+            System.out.println("fully reserved");
+        } 
         
+        
+        System.out.println("type 0 to exit");
+        
+        System.out.println();
+        System.out.println("Enter the rservation number: ");
+        
+        
+        try{
+            while(true){
+            int resChoice = input.nextInt();
+            
+            if(resChoice==0){
+                return;
+                
+            }
+            else if(resChoice>Reservations.size()+1||resChoice<0){
+                System.out.println("error! reenter");
+                        
+            }
+            else{
+                 Reservations.get(resChoice-1).setCustomer(this);
+            Reservations.get(resChoice-1).setAvailable(false);
+            break;
+            }
+           
+            }
+        
+
+        
+        System.out.println("");
+        System.out.println("You have booked succefully");
+        System.out.println("");
+        }catch(Exception ex){
+            System.out.println("Error!");
+            System.out.println("Enter a valid rservation number");
+            System.out.println("");
+        }
     }
-    
-   
-    
-    
 }

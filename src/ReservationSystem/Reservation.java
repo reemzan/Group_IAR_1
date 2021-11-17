@@ -12,7 +12,18 @@ public class Reservation {
     private double price;
     private boolean Available;
     
+    private Customer customer;
     static ArrayList<Reservation> Reservations = new ArrayList();
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+    
+    
 
     public Reservation(String ReservationDate, String ReservationTime, int VisitorNum,double price, boolean Available) {
         this.ReservationDate = ReservationDate;
@@ -63,12 +74,18 @@ public class Reservation {
     public void setAvailable(boolean Available) {
         this.Available = Available;
     }
+    
+    public static boolean isReservationsFull() {
+    for (int i = 0; i < Reservations.size(); i++) {
+        if (Reservations.get(i).isAvailable()==true) {
+            return false;
+        }
+    }
+    return true;
+}
 
-    
-
-    
-    
-    
-    
-    
+    @Override
+    public String toString() {
+        return "Date: " + ReservationDate + " Time: " + ReservationTime + " VisitorNumber: " + VisitorNum + " price: " + price ;
+    }
 }
