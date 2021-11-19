@@ -19,6 +19,10 @@ public class Customer {
         this.phonenum = phonenum;
     }
 
+    public Customer() {
+    }
+
+
     public String getUsername() {
         return username;
     }
@@ -257,4 +261,10 @@ public class Customer {
             System.out.println("");
         }
     }
-}
+      public int[] DeleteMyReservation(int [] choice){
+        
+       int array[]={1,2,3,4,5};
+       return array;
+      }
+      }
+            

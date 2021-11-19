@@ -15,6 +15,8 @@ public class Reservation {
     private Customer customer;
     static ArrayList<Reservation> Reservations = new ArrayList();
 
+    
+
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -83,6 +85,7 @@ public class Reservation {
     }
     return true;
 }
+  
 
     @Override
     public String toString() {
