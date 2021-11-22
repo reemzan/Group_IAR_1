@@ -19,6 +19,9 @@ public class Customer {
         this.phonenum = phonenum;
     }
 
+    public Customer() {
+    }
+
     public String getUsername() {
         return username;
     }
@@ -165,7 +168,7 @@ public class Customer {
                     
                     break;
                 case 3:
-                   
+                   tem.DeleteMyReservation(input);
                     break;
                     case 4:
                     return;
@@ -257,4 +260,39 @@ public class Customer {
             System.out.println("");
         }
     }
+     public void DeleteMyReservation(Scanner input){
+          String custo=this.getEmail();
+         for (int i = 0; i < Reservations.size(); i++) {
+             if(Reservations.get(i).getCustomer()==this){
+                  System.out.println((i + 1) + "- " + Reservations.get(i).toString());
+                }
+         }
+          if(Reservation.Is_CustomerReservation_Empty(custo)){
+                  System.out.println("you dont have any reservations");
+                  return;
+              }
+          else{
+             System.out.println("Enter the reservation number you want to delete");
+          }
+             try{
+             while(true){
+             int delChoice = input.nextInt();
+             if(delChoice==0){
+                 return;}
+              else if(delChoice<0||delChoice>Reservations.size()+1){
+                System.out.println("error! reenter again: ");}
+              else{
+                 Reservations.get(delChoice-1).setCustomer(null); 
+                 Reservations.get(delChoice-1).setAvailable(true); 
+                 break;
+              }
+             
+         }
+             System.out.println("Delete have been successfully");
+             }catch(Exception ex){
+                  System.out.println("Error!");
+            System.out.println("Enter a valid reservation number to delete");
+            System.out.println("");
+             }
+     }
 }

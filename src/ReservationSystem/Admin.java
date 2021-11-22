@@ -152,12 +152,12 @@ public class Admin {
         System.out.println("enter price");
         double price = input.nextDouble();
         boolean Available = true;
-        Reservation new_reservation = new Reservation(ReservationDate, ReservationTime,  VisitorNum,price, Available);
+        Reservation new_reservation = new Reservation(ReservationDate, ReservationTime,  VisitorNum,price, Available,null);
         Reservations.add(new_reservation);
         System.out.println("");
         System.out.println("the new reservation has been added : "+new_reservation.toString());
         System.out.println("");
-        
+      
         
     }
     
