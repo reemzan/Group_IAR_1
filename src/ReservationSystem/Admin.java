@@ -1,70 +1,37 @@
 package ReservationSystem;
 
-import static ReservationSystem.Reservation.Reservations;
+import static ReservationSystem.Reservation.ReservationsArray;
+import static ReservationSystem.User.usersArry;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Admin {
-    
-    private String username;
-    private String password;
-    private String email;
-    private long phonenum;
-    static ArrayList<Admin> admin = new ArrayList();
-    
+public class Admin extends User {
+
+    // ArrayList for Admins
+    static ArrayList<Admin> adminArray = new ArrayList();
+
+    // Constructor to create an admin object
     public Admin(String username, String password, String email, long phonenum) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phonenum = phonenum;
+        super(username, password, email, phonenum);
     }
 
-    public String getUsername() {
-        return username;
+    // Information for the admin 
+    public static void addAdmin() {
+        String username = "1";
+        String password = "1";
+        String email = "1@gmail.com";
+        long phonenum = 1111111111;
+        User newAdmin = new User(username, password, email, phonenum);
+        usersArry.add(newAdmin);
+        Admin newAdmin1 = new Admin(username, password, email, phonenum);
+        adminArray.add(newAdmin1);
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public long getPhonenum() {
-        return phonenum;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPhonenum(long phonenum) {
-        this.phonenum = phonenum;
-    }
-    
-     // login method, allow the user to access the application
-    public static void addAdmin(){
-        String username= "1";
-     String password= "1";
-     String email="1@gmail.com";
-     long phonenum=1111111111;
-        Admin newAdmin = new Admin(username,password,email,phonenum);
-        admin.add(newAdmin);
-    }
-    
+    // Allow the admin to access the system
     public static void login(Scanner input) {
-
+        // Ask the admin to enter required data
         System.out.println();
-        System.out.println("Login an account ");
+        System.out.println("Login into an account : Admin");
         System.out.println("--------------------------");
         System.out.print("Enter Email: ");
         String email = input.next();
@@ -72,62 +39,56 @@ public class Admin {
         String password = input.next();
 
         int key = 0;
-         for (int i = 0; i < admin.size(); i++) {
-            Admin tem = admin.get(i);
-            if (email.equalsIgnoreCase(tem.getEmail())) {
-
+        for (int i = 0; i < adminArray.size(); i++) {
+            Admin temp = adminArray.get(i);
+            if (email.equalsIgnoreCase(temp.getEmail())) {
                 //email correct, password correct
-                if (password.equalsIgnoreCase(tem.getPassword())) {
-                    // Iteration 2
+                if (password.equalsIgnoreCase(temp.getPassword())) {
                     System.out.println("");
                     System.out.println("You have logged in succefully");
                     System.out.println("");
-                    
-                    //---------------------------------------------------------------------------------------------------------------------
-                       int choise = 0;
-        while (choise != 1 || choise != 2 || choise != 3) {
-            System.out.println("type 1 add reservation");
-            System.out.println("type 2 to view reservation");
-            System.out.println("type 3 to delete reservation");
-            System.out.println("type 4 to logout");
-            choise = input.nextInt();
-            switch (choise) {
-                case 1:
-                    tem.AddReservation(input);
-                    
-                    
-                    break;
-                case 2:
-                    
-                    break;
-                case 3:
-                   
-                    break;
-                    case 4:
-                    return;
-                
-                default:
-                    System.out.println();
-                    System.out.println("wrong input try again");
-                    break;
-            }
-        }
-                    
-                    
-                    
-                    
+                    int adminChoice = 0;
+                    while (adminChoice != 1 || adminChoice != 2 || adminChoice != 3) {
+                        // Admin main menu
+                        System.out.println("Enter 1 to add a reservation");
+                        System.out.println("Enter 2 to view a reservation");
+                        System.out.println("Enter 3 to delete a reservation");
+                        System.out.println("Enter 4 to logout");
+                        adminChoice = input.nextInt();
+                        switch (adminChoice) {
+                            // Redirect admin depends on the entered value
+                            case 1:
+                                temp.AddReservation(input);
+                                break;
+                            case 2:
+
+                                break;
+                            case 3:
+
+                                break;
+                            case 4:
+                                return;
+
+                            default:
+                                System.out.println();
+                                // Show error message if admin entered a value other than 1-4
+                                System.out.println("Wrong input try again");
+                                break;
+                        }
+                    }
 
                 } else {
-                    //email correct, password incorrect
+                    // Email correct, password incorrect
                     System.out.println("ERROR, wrong password");
-                    while (!password.equalsIgnoreCase(tem.getPassword())) {
-                        System.out.println("try again or type 'exit' ");
-                        System.out.print("Enter password: ");
+                    while (!password.equalsIgnoreCase(temp.getPassword())) {
+                        System.out.println("Try again or type 'exit' ");
+                        System.out.println("Enter password: ");
                         password = input.next();
                         if (password.equalsIgnoreCase("exit")) {
                             break;
                         }
                     }
+                    // Email correct, password correct
                     System.out.println("");
                     System.out.println("You have logged in succefully");
                     System.out.println("");
@@ -136,30 +97,44 @@ public class Admin {
             }
         }
 
-        //email incorrect
+        // Email incorrect
         if (key == 0) {
             System.out.println("ERROR, email is not stored");
         }
     }
-    
-    public void AddReservation(Scanner input){
-        System.out.println("enter reservation date");
+
+    // Allow the admin to create a new appointment 
+    public void AddReservation(Scanner input) {
+        // Enter required data for the appointment
+        System.out.println("Enter reservation date");
         String ReservationDate = input.next();
-        System.out.println("enter reservation time");
+        System.out.println("Enter reservation time");
         String ReservationTime = input.next();
-        System.out.println("enter number of visitors");
+        System.out.println("Enter number of visitors");
         int VisitorNum = input.nextInt();
-        System.out.println("enter price");
+        System.out.println("Enter price");
         double price = input.nextDouble();
+        // Set as an available appointment
         boolean Available = true;
+<<<<<<< Updated upstream
         Reservation new_reservation = new Reservation(ReservationDate, ReservationTime,  VisitorNum,price, Available);
         Reservations.add(new_reservation);
+=======
+        // Create new appointment
+        Reservation new_reservation = new Reservation(ReservationDate, ReservationTime, VisitorNum, price, Available, null);
+        // Add to available Reservations
+        ReservationsArray.add(new_reservation);
+>>>>>>> Stashed changes
         System.out.println("");
-        System.out.println("the new reservation has been added : "+new_reservation.toString());
+        // Confirmation message
+        System.out.println("The new reservation has been added : " + new_reservation.toString());
         System.out.println("");
+<<<<<<< Updated upstream
         
         
+=======
+
+>>>>>>> Stashed changes
     }
-    
 
 }
