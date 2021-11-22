@@ -14,6 +14,7 @@ public class Reservation {
     
     private Customer customer;
     static ArrayList<Reservation> Reservations = new ArrayList();
+   
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
@@ -25,12 +26,13 @@ public class Reservation {
     
     
 
-    public Reservation(String ReservationDate, String ReservationTime, int VisitorNum,double price, boolean Available) {
+    public Reservation(String ReservationDate, String ReservationTime, int VisitorNum,double price, boolean Available, Customer customer) {
         this.ReservationDate = ReservationDate;
         this.ReservationTime = ReservationTime;
         this.VisitorNum = VisitorNum;
         this.price=price;
         this.Available = Available;
+        this.customer=customer;
     }
     
     
@@ -83,7 +85,21 @@ public class Reservation {
     }
     return true;
 }
-
+    
+   public static boolean Is_CustomerReservation_Empty(String email){
+        for (int i = 0; i < Reservations.size(); i++){
+            if(Reservations.get(i).getCustomer()!=null){
+            if(Reservations.get(i).getCustomer().getEmail().equalsIgnoreCase(email)){
+                return false;
+            }
+            }else{
+                continue;
+               
+            }
+        }
+        return true;
+   }
+   
     @Override
     public String toString() {
         return "Date: " + ReservationDate + " Time: " + ReservationTime + " VisitorNumber: " + VisitorNum + " price: " + price ;
