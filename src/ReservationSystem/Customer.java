@@ -1,6 +1,7 @@
 package ReservationSystem;
 
-import static ReservationSystem.Horse_Riding_Reservation.TakeCustomerChoice;
+import java.util.ArrayList;
+import java.util.Scanner;
 // Customer Class is a subclass of User Class
 public class Customer extends User {
 
@@ -134,10 +135,17 @@ return true;
     // Allow the Customer to view his/her reservered reservations
      public void ViewMyReservations(){
          
+        ArrayList<Reservation> CRA = new ArrayList();
         for (int i = 0; i < DataHolder.ReservationsArray.size(); i++) {
             if (DataHolder.ReservationsArray.get(i).getCustomer() == this) {
                 System.out.println((i + 1) + "- " + DataHolder.ReservationsArray.get(i).toString());
+                CRA.add(DataHolder.ReservationsArray.get(i));
             }
+        }
+        if(CRA.isEmpty()){
+            System.out.println("");
+            System.out.println("You have no booked reservation");
+            System.out.println("");
         }
      }
 
@@ -181,6 +189,11 @@ return true;
             System.out.println("Enter a valid reservation number to delete");
             System.out.println("");
         }
+    }
+     public int TakeCustomerChoice(){
+         Scanner input = new Scanner(System.in);
+         int resrervationChoice = input.nextInt();
+         return resrervationChoice;
     }
 
 }

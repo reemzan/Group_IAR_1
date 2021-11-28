@@ -153,18 +153,6 @@ public class Horse_Riding_Reservation {
 
         }
     }
-    
-    public static String AdminAddReservation(){
-        // admin AddReservation menu
-                System.out.println("Enter reservation date");
-                String ReservationDate = input.next();
-                System.out.println("Enter reservation time");
-                String ReservationTime = input.next();
-                System.out.println("Enter price");
-                String price = input.next();
-                return(ReservationDate+" "+ReservationTime+" "+price);
-    }
-
     public static Admin initAdmin() {
         String username = "1";
         String password = "1";
@@ -172,11 +160,6 @@ public class Horse_Riding_Reservation {
         long phonenum = 1111111111;
         Admin newAdmin = new Admin(username, password, email, phonenum);
         return newAdmin;
-    }
-    
-    public static int TakeCustomerChoice(){
-      int resrervationChoice = input.nextInt();
-      return resrervationChoice;
     }
 
 }
