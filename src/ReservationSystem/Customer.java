@@ -2,133 +2,55 @@ package ReservationSystem;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import static ReservationSystem.Reservation.ReservationsArray;
-import static ReservationSystem.User.usersArry;
 
-// Customer Class is a subclass of User Class
 public class Customer extends User {
-
-<<<<<<< Updated upstream
-    public Customer(String username, String password, String email, long phonenum) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phonenum = phonenum;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-=======
-    // ArrayList for customers
-    static ArrayList<Customer> customersArray = new ArrayList();
->>>>>>> Stashed changes
 
     // Constructor to create a customer object
     public Customer(String username, String password, String email, long phonenum) {
         super(username, password, email, phonenum);
     }
 
-    // signup method, takes information of a new customer then store 
-    // New Customer to the system
-    public static void sign_up(Scanner input) {
-        // Take all required information from the customer 
-        System.out.println();
-        System.out.println("Sign up an account ");
-        System.out.println("--------------------------");
-        System.out.println("Enter username: ");
-        String username = input.next();
-        System.out.println("Enter password: ");
-        String password = input.next();
-        System.out.println("Enter Email (gmail, hotmail only): ");
-        String email = input.next();
-        while (true) {
-            // Check the format of the entered Email
-            if (email.endsWith("@gmail.com") || email.endsWith("@hotmail.com")) {
+    @Override
+    public void ShowMenu(int CustomerChoice) {
+        switch (CustomerChoice) {
+            // Redirect customer depends on the entered value
+            case 1:
+                //    AddReservation(adminChoice);
+                MakeReservation();
                 break;
-            } // If not correct ask the customer to reenter the Email
-            System.out.print("Wrong Email try again ");
-            email = input.next();
-        }
+            case 2:
+                ViewMyReservations();
+                break;
+            case 3:
+                DeleteMyReservation();
+                break;
+            case 4:
+                AskforHelp();
+                break;
+            case 5:
+                return;
 
-        // Checks if the entered email already exists or not
-        for (int i = 0; i < usersArry.size(); i++) {
-            User temp = usersArry.get(i);
-            if (email.equalsIgnoreCase(temp.getEmail())) {
+            default:
                 System.out.println();
-                // Entered Email is already existed in the system
-                System.out.println("email already exist.");
-                // Show an error message and ask the customer to reenter the correct Email
-                while (email.equalsIgnoreCase(temp.getEmail())) {
-                    System.out.println("Try again or type 'exit' ");
-                    System.out.print("Enter email: ");
-                    // Exit if the customer asked to 
-                    email = input.next();
-                    if (email.equalsIgnoreCase("exit")) {
-                        break;
-                    }
-                }
-            }
+                // Show error message if customer entered a value other than 1-4
+                System.out.println("Wrong input try again");
+                break;
         }
+    }
 
-        // Checks if the entered phone number is valid
-        System.out.println("Enter phone number: ");
-        String Phone = input.next();
-        while (Phone.length() != 10) {
-            // Ask the customer to reenter the phone number if it isn't correct
-            System.out.println("Phone number is not 10 digits try again: ");
-            Phone = input.next();
-        }
-
-        // Create a new user object when all information are valid 
-        try {
-            long phone = Long.parseLong(Phone);
-            User new_customer = new User(username, password, email, phone);
-
-            // Add to users ArrayList   
-            usersArry.add(new_customer);
-
-            // Create a new customer object
-            Customer new_customer1 = new Customer(username, password, email, phone);
-
-            // Add to customers ArrayList   
-            customersArray.add(new_customer1);
-
-            // Confirmation message
-            System.out.println("");
-            System.out.println("You have signed up succefully");
-            System.out.println("");
-        } catch (Exception ex) {
-            // Show an error message 
-            // and ask the customer to reenter a valid phone number 
-            System.out.println("Error!");
-            System.out.println("Enter a valid phone number");
-        }
-
+    // Add a new Customer to the system
+    public boolean sign_up(Customer customer) {
+        DataHolder.customersArray.add(customer);
+        //    customersArray.add(customer);
+        return true;
     }
 
     // Allow the customer to access the system
-    public static void login(Scanner input) {
-        // Ask the customer to enter required data
-        System.out.println();
-        System.out.println("Login into an account ");
-        System.out.println("--------------------------");
-        System.out.println("Enter Email: ");
-        String email = input.next();
-        System.out.println("Enter password: ");
-        String password = input.next();
+    public boolean login(String email, String password) {
 
         int key = 0;
-        for (int i = 0; i < customersArray.size(); i++) {
-            Customer temp = (Customer) customersArray.get(i);
+        for (int i = 0; i < DataHolder.customersArray.size(); i++) {
+            Customer temp = DataHolder.customersArray.get(i);
             if (email.equalsIgnoreCase(temp.getEmail())) {
                 //email correct, password correct
                 if (password.equalsIgnoreCase(temp.getPassword())) {
@@ -136,131 +58,51 @@ public class Customer extends User {
                     System.out.println("");
                     System.out.println("You have logged in succefully");
                     System.out.println("");
-<<<<<<< Updated upstream
-                    int choise = 0;
-        while (choise != 1 || choise != 2 || choise != 3) {
-            System.out.println("type 1 make reservation");
-            System.out.println("type 2 to view reservation");
-            System.out.println("type 3 to delete reservation");
-            System.out.println("type 4 to logout");
-            choise = input.nextInt();
-            switch (choise) {
-                case 1:
-                    tem.MakeReservation(input);
-                    break;
-                case 2:
-                    
-                    break;
-                case 3:
-                   
-                    break;
-                    case 4:
-                    return;
-                
-                default:
-                    System.out.println();
-                    System.out.println("wrong input try again");
-                    break;
-            }
-        }
-=======
-                    int customerChoice = 0;
-                    while (customerChoice != 1 || customerChoice != 2 || customerChoice != 3) {
-                        // Customer main menu
-                        System.out.println("Enter 1 to make reservation");
-                        System.out.println("Enter 2 to view reservation");
-                        System.out.println("Enter 3 to delete reservation");
-                        System.out.println("Enter 4 to logout");
-                        customerChoice = input.nextInt();
-                        // Redirect customer depends on the entered value
-                        switch (customerChoice) {
-                            case 1:
-                                temp.MakeReservation(input);
-                                break;
-                            case 2:
 
-                                break;
-                            case 3:
-                                temp.DeleteMyReservation(input);
-                                break;
-                            case 4:
-                                return;
+                    return true;
 
-                            default:
-                                // Show error message if customer entered a value other than 1-4
-                                System.out.println();
-                                System.out.println("Wrong input try again");
-                                break;
-                        }
-                    }
->>>>>>> Stashed changes
-
-                } else {
-                    // Email correct, password incorrect
-                    System.out.println("ERROR, wrong password");
-                    while (!password.equalsIgnoreCase(temp.getPassword())) {
-                        System.out.println("Try again or type 'exit' ");
-                        System.out.println("Enter password: ");
-                        password = input.next();
-                        if (password.equalsIgnoreCase("exit")) {
-                            break;
-                        }
-                    }
-                    // Email correct, Password correct
-                    System.out.println("");
-                    System.out.println("You have logged in succefully");
-                    System.out.println("");
                 }
-                key = 1;
             }
         }
-
-        // Email incorrect
-        if (key == 0) {
-            System.out.println("ERROR, email is not stored");
-        }
+        return false;
     }
 
     // Allow the customer to reserve a new appointment
-    public void MakeReservation(Scanner input) {
-        // Check the availability of appoitments 
-        for (int i = 0; i < ReservationsArray.size(); i++) {
-            if (ReservationsArray.get(i).isAvailable() == true) {
-                System.out.println((i + 1) + "- " + ReservationsArray.get(i).toString());
-            }
+    public void MakeReservation() {
+        Reservation r = new Reservation();
 
-        }
+        // Check the availability of appoitments 
+        ViewAvailableReservations();
 
         // No available appointment
-        if (ReservationsArray.isEmpty()) {
+        if (DataHolder.ReservationsArray.isEmpty()) {
             System.out.println("There is no available reservations");
-        } else if (Reservation.isReservationsFull()) {
+        } else if (r.isReservationsFull()) {
             // Or reserved
             System.out.println("Fully reserved");
         }
         // Exit from the current menu
-        System.out.println("Enter 0 to exit");
+        System.out.println("Enter 0 to return to the menu");
         System.out.println();
         // Enter reservation number
         System.out.println("Enter the reservation number: ");
 
         try {
             while (true) {
-                int resrervationChoice = input.nextInt();
+                int resrervationChoice = TakeCustomerChoice();
 
                 if (resrervationChoice == 0) {
                     return;
                     // Wrong Reservation number
-                } else if (resrervationChoice > ReservationsArray.size() + 1 || resrervationChoice < 0) {
+                } else if (resrervationChoice > DataHolder.ReservationsArray.size() + 1 || resrervationChoice < 0) {
                     System.out.println("Error! reenter");
 
                     // All set 
                 } else {
-                    ReservationsArray.get(resrervationChoice - 1).setCustomer(this);
-                    ReservationsArray.get(resrervationChoice - 1).setAvailable(false);
+                    DataHolder.ReservationsArray.get(resrervationChoice - 1).setCustomer(this);
+                    DataHolder.ReservationsArray.get(resrervationChoice - 1).setAvailable(false);
                     break;
                 }
-
             }
 
             // Confirmation message
@@ -274,39 +116,60 @@ public class Customer extends User {
             System.out.println("");
         }
     }
-<<<<<<< Updated upstream
-}
-=======
 
-    // Allow the Customer to delete a reserved appointment
-    public void DeleteMyReservation(Scanner input) {
-        // Depending on the customer's email
-        String customer = this.getEmail();
-        for (int i = 0; i < ReservationsArray.size(); i++) {
-            if (ReservationsArray.get(i).getCustomer() == this) {
-                System.out.println((i + 1) + "- " + ReservationsArray.get(i).toString());
+    public void ViewAvailableReservations() {
+        for (int i = 0; i < DataHolder.ReservationsArray.size(); i++) {
+            if (DataHolder.ReservationsArray.get(i).isAvailable() == true) {
+                System.out.println((i + 1) + "- " + DataHolder.ReservationsArray.get(i).toString());
             }
         }
+    }
+
+    // Allow the Customer to view his/her reservered reservations
+    public void ViewMyReservations() {
+
+        ArrayList<Reservation> CRA = new ArrayList();
+        for (int i = 0; i < DataHolder.ReservationsArray.size(); i++) {
+            if (DataHolder.ReservationsArray.get(i).getCustomer() == this) {
+                System.out.println((i + 1) + "- " + DataHolder.ReservationsArray.get(i).toString());
+                CRA.add(DataHolder.ReservationsArray.get(i));
+            }
+        }
+        if (CRA.isEmpty()) {
+            System.out.println("");
+            System.out.println("You have no booked reservation");
+            System.out.println("");
+        }
+    }
+
+    // Allow the Customer to delete a reserved appointment
+    public void DeleteMyReservation() {
+        Reservation r = new Reservation();
+
+        // Depending on the customer's email
+        String customeremail = this.getEmail();
+
         // Error message, Customer doesn't booked any appointments
-        if (Reservation.Is_CustomerReservation_Empty(customer)) {
+        if (r.Is_CustomerReservation_Empty(customeremail)) {
             System.out.println("Sorry! you dont have any reservations yet");
             return;
         } else {
+            ViewMyReservations();
             // Customer have an appointment
             System.out.println("Enter the reservation number you want to delete");
         }
         try {
             while (true) {
-                int deletionChoice = input.nextInt();
+                int deletionChoice = TakeCustomerChoice();
                 if (deletionChoice == 0) {
                     return;
-                } else if (deletionChoice < 0 || deletionChoice > ReservationsArray.size() + 1) {
+                } else if (deletionChoice < 0 || deletionChoice > DataHolder.ReservationsArray.size() + 1) {
                     // Incorrect reservation number
                     System.out.println("Error! reenter again: ");
                     // All set
                 } else {
-                    ReservationsArray.get(deletionChoice - 1).setCustomer(null);
-                    ReservationsArray.get(deletionChoice - 1).setAvailable(true);
+                    DataHolder.ReservationsArray.get(deletionChoice - 1).setCustomer(null);
+                    DataHolder.ReservationsArray.get(deletionChoice - 1).setAvailable(true);
                     break;
                 }
             }
@@ -319,5 +182,53 @@ public class Customer extends User {
             System.out.println("");
         }
     }
+
+    public void AskforHelp() {
+        System.out.println("Frequent Asked queations:");
+        System.out.println("1- What are the age and weight limits for horseback riding?");
+        System.out.println("2- What is the maximum number of visitores for one appointment?");
+        System.out.println("3- What if I've never been on a horse before?");
+        System.out.println("4- What should we wear and bring with us?");
+        System.out.println("5- What is your working hours?");
+        //System.out.println("6- couldn't find what you are looking for?");
+
+        int customerChoice = TakeCustomerChoice();
+
+        switch (customerChoice) {
+            case 1:
+                System.out.println("The age starts from 7\n"
+                        + "The weight limit is 90kg.\n");
+                break;
+
+            case 2:
+                System.out.println("We do not restrict our visitore, we want all \n"
+                        + "of the family members to have fun!!\n");
+                break;
+
+            case 3:
+                System.out.println("We have well train team that will take care of you.\n");
+                break;
+
+            case 4:
+                System.out.println("The trainees should bring their own:\n"
+                        + "helmet,breeche,boots,and golves\n");
+                break;
+
+            case 5:
+                System.out.println("5:00pm to 11:00pm\n");
+                break;
+
+            default:
+                System.out.println("couldn't find what you are looking for?\n "
+                        + "Contact us:\n" + "Email:park@gmail.com\n" + "phone:0556736257\n");
+                break;
+        }
+    }
+
+    public int TakeCustomerChoice() {
+        Scanner input = new Scanner(System.in);
+        int choice = input.nextInt();
+        return choice;
+    }
+
 }
->>>>>>> Stashed changes
