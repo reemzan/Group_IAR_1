@@ -1,21 +1,31 @@
 package ReservationSystem;
 
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 
-public class Reservation {
+public class Reservation{
     
     private String ReservationDate;
     private String ReservationTime;
-    private int VisitorNum;
-    private double price;
+    private String price;
     private boolean Available;
-    
     private Customer customer;
-    static ArrayList<Reservation> Reservations = new ArrayList();
-   
 
+// Constructor to create a new Reservation Object
+    public Reservation(String ReservationDate, String ReservationTime, String price, boolean Available, Customer customer) {
+        this.ReservationDate = ReservationDate;
+        this.ReservationTime = ReservationTime;
+        this.price = price;
+        this.Available = Available;
+        this.customer = customer;
+    }
+
+    Reservation() {
+      
+    }
+
+    // Setters and getters 
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
@@ -23,19 +33,6 @@ public class Reservation {
     public Customer getCustomer() {
         return customer;
     }
-    
-    
-
-    public Reservation(String ReservationDate, String ReservationTime, int VisitorNum,double price, boolean Available, Customer customer) {
-        this.ReservationDate = ReservationDate;
-        this.ReservationTime = ReservationTime;
-        this.VisitorNum = VisitorNum;
-        this.price=price;
-        this.Available = Available;
-        this.customer=customer;
-    }
-    
-    
 
     public String getReservationDate() {
         return ReservationDate;
@@ -53,19 +50,11 @@ public class Reservation {
         this.ReservationTime = ReservationTime;
     }
 
-    public int getVisitorNum() {
-        return VisitorNum;
-    }
-
-    public void setVisitorNum(int VisitorNum) {
-        this.VisitorNum = VisitorNum;
-    }
-    
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -76,32 +65,37 @@ public class Reservation {
     public void setAvailable(boolean Available) {
         this.Available = Available;
     }
-    
-    public static boolean isReservationsFull() {
-    for (int i = 0; i < Reservations.size(); i++) {
-        if (Reservations.get(i).isAvailable()==true) {
-            return false;
-        }
-    }
-    return true;
-}
-    
-   public static boolean Is_CustomerReservation_Empty(String email){
-        for (int i = 0; i < Reservations.size(); i++){
-            if(Reservations.get(i).getCustomer()!=null){
-            if(Reservations.get(i).getCustomer().getEmail().equalsIgnoreCase(email)){
+
+    // Check if all reservation are full
+    public boolean isReservationsFull() {
+        for (int i = 0; i < DataHolder.ReservationsArray.size(); i++) {
+            if (DataHolder.ReservationsArray.get(i).isAvailable() == true) {
                 return false;
-            }
-            }else{
-                continue;
-               
             }
         }
         return true;
-   }
-   
+    }
+
+    // Check if a particular customer has any reserved appointments or not
+    public boolean Is_CustomerReservation_Empty(String email) {
+        for (int i = 0; i < DataHolder.ReservationsArray.size(); i++) {
+            if (DataHolder.ReservationsArray.get(i).getCustomer() != null) {
+                if (DataHolder.ReservationsArray.get(i).getCustomer().getEmail().equalsIgnoreCase(email)) {
+                    return false;
+                }
+            } else {
+                continue;
+
+            }
+        }
+        return true;
+    }
+
+    // Print a reservation information
     @Override
     public String toString() {
-        return "Date: " + ReservationDate + " Time: " + ReservationTime + " VisitorNumber: " + VisitorNum + " price: " + price ;
+       return "Date: " + ReservationDate + " | Time: " + ReservationTime + " | price: " + price+" SAR";
     }
 }
+
+    
