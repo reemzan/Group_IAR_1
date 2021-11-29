@@ -18,8 +18,9 @@ public class Horse_Riding_Reservation {
         // Add the Admin to the system
         Admin newAdmin = initAdmin();
         dh.getAdminArray().add(newAdmin);
-
-       
+        
+        CustomerService newcustomerservice = initCustomerService();
+       dh.getcustomer_serviceArray().add(newcustomerservice);
         
         // Integer input and loop to determine the user's choice
         int userChoice = 0;
@@ -84,7 +85,21 @@ public class Horse_Riding_Reservation {
                         break;
 
                         // Customer login
-                    } else {
+                    } else if(emailLogin.equalsIgnoreCase("2") && passwordLogin.equalsIgnoreCase("2")){
+                           CustomerService customerservice =dh.RetriveCustomerServiceObject(emailLogin,dh.getcustomer_serviceArray());
+                              
+                        System.out.println("doonne");
+                        customerservice.Message_loginConfirm();
+
+                        int choice;
+                        do {
+                            PrintMenus(4);
+                            choice = input.nextInt();
+                            customerservice.ShowMenu(choice);
+                        } while (choice != 2);
+                        break;
+                    }
+                    else {
                         Customer customer = dh.RetriveCustomerObject(emailLogin, dh.getCustomersArray());
                         if (customer != null) {
                             System.out.println("yay = email found");
@@ -144,6 +159,10 @@ public class Horse_Riding_Reservation {
                 System.out.println("Enter 4 to ask for help");
                 System.out.println("Enter 5 to logout");
                 return;
+                
+             case 4:
+                System.out.println("Enter 1 to add  Q&A");
+                System.out.println("Enter 2 to logout");
             
             default:
                 return;
@@ -159,7 +178,15 @@ public class Horse_Riding_Reservation {
         Admin newAdmin = new Admin(username, password, email, phonenum);
         return newAdmin;
     }
-    
+   
+     public static CustomerService initCustomerService() {
+        String username = "2";
+        String password = "2";
+        String email = "2";
+        long phonenum = 222222;
+        CustomerService  newcustomerservice= new CustomerService(username, password, email, phonenum);
+        return newcustomerservice;
+    }
  
     
 }

@@ -199,51 +199,42 @@ return true;
             System.out.println("");
         }
     }
+    public void viewAllquestions(){
+          System.out.println("Frequent Asked question:");
+          System.out.println("--------------------------");
+          for(int i=0;i<DataHolder.question_And_answerArray.size();i++){
+          System.out.println((i + 1) + "- " + DataHolder.question_And_answerArray.get(i).getQuestions());
+        }
+          System.out.println("For contact info enter 0");
+    }
     
     public void AskforHelp(){
-        System.out.println("Frequent Asked queations:");
-        System.out.println("---------------------------------------------------------------");
-        System.out.println("1- What are the age and weight limits for horseback riding?");
-        System.out.println("2- What is the maximum number of visitores for one appointment?");
-        System.out.println("3- What if I've never been on a horse before?");
-        System.out.println("4- What should we wear and bring with us?");
-        System.out.println("5- What is your working hours?");
-       
-        int customerChoice = TakeCustomerChoice();
-
-        switch (customerChoice) {
-            case 1:
-                System.out.println("The age starts from 7\n"
-                        + "The weight limit is 90kg.\n");
-                break;
-
-            case 2:
-                System.out.println("We do not restrict our visitore, we want all \n"
-                        + "of the family members to have fun!!\n");
-                break;
-
-            case 3:
-                System.out.println("We have well train team that will take care of you.\n");
-                break;
-
-            case 4:
-                System.out.println("The trainees should bring their own:\n"
-                        + "helmet,breeche,boots,and golves\n");
-                break;
-
-            case 5:
-                System.out.println("5:00pm to 11:00pm\n");
-                break;
-
-            default:
-                System.out.println("couldn't find what you are looking for?\n "
-                        + "Contact us:\n" + "Email:park@gmail.com\n" + "phone:0556736257\n");
-                break;
+        
+         if(DataHolder.question_And_answerArray.isEmpty()){
+            System.out.println("Sorry! there are no questions yet");
+              System.out.println("please contact us:\n" + "Email:park@gmail.com\n" + "phone:0556736257\n");
+            return;
         }
-      
-      
-
+         else{
+        viewAllquestions();
+        System.out.println("Enter the question number you want to ask:");
+        while(true){
+        int customerChoice = TakeCustomerChoice();
+       if(customerChoice>DataHolder.question_And_answerArray.size()+1||customerChoice<0){
+                System.out.println("Error! reenter again:");
+                }
+       else if(customerChoice!=0){
+        System.out.println(DataHolder.question_And_answerArray.get(customerChoice-1).getAnswer()+"\n");
+        break;}
+        else  if(customerChoice==0){
+              System.out.println("couldn't find what you are looking for?\n "
+                      + "Contact us:\n" + "Email:park@gmail.com\n" + "phone:0556736257\n");
+        break;
+          }
     }
+         }
+    }
+    
      public int TakeCustomerChoice(){
          Scanner input = new Scanner(System.in);
          int choice = input.nextInt();
