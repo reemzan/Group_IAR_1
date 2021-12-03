@@ -17,11 +17,13 @@ public class Customer extends User{
     public Customer(String username, String password, String email, long phonenum) {
         super(username, password, email, phonenum);
     }
-    
+     
     @Override
-    public void ShowMenu(int CustomerChoice){
+
+   public void ShowMenu(int CustomerChoice){
+               
         switch (CustomerChoice) {
-                            // Redirect customer depends on the entered value
+                    // Redirect customer depends on the entered value
                             case 1:
                             //    AddReservation(adminChoice);
                                 MakeReservation();
@@ -44,8 +46,9 @@ public class Customer extends User{
                                 System.out.println("Wrong input try again");
                                 break;
                         }
-    }
 
+    }
+    
 
     // Add a new Customer to the system
     public boolean sign_up(Customer customer) {

@@ -1,3 +1,5 @@
+package Test;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import ReservationSystem.Customer;
+import org.junit.Assert;
 
 /**
  *
@@ -36,15 +39,31 @@ public class test {
     @After
     public void tearDown() {
     }
+    
 
-      @Test
-    public void testAskforHelp(){
-//        String expected="couldn't find what you are looking for?\n "
-//                      + "Contact us:\n" + "Email:park@gmail.com\n" + "phone:0556736257\n";
-//        Customer customer=new Customer();
-//        assertEquals(customer.AskforHelp(),expected);
+   //test for show menue method 
+    @Test
+    public void testshowmeue(){
+        int choice=3;
+        Customer customer=new Customer();
         
+        customer.ShowMenu(choice);
     }
+    
+     //test for ask for help method 
+    @Test
+    public void testAskforhelp(){
+        Customer customer=new Customer();
+        customer.AskforHelp();
+    }
+    
+    //test for view my reservation method 
+     @Test
+    public void testviewmyreservation(){
+        Customer customer=new Customer();
+        customer.ViewMyReservations();
+    }
+    
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
