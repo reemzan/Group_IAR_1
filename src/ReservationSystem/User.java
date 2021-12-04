@@ -1,18 +1,16 @@
 package ReservationSystem;
 
-//import static ReservationSystem.Reservation.Reservations;
-import java.util.ArrayList;
-import java.util.Scanner;
-
+/**
+ *
+ * @author wasan
+ */
 public class User {
-
-    private String username;
+      private String username;
     private String password;
     private String email;
     private long phonenum;
-    // ArrayList to store all users' information
-    static ArrayList<User> usersArry = new ArrayList();
 
+    
     public User() {
     }
 
@@ -56,4 +54,8 @@ public class User {
     public void setPhonenum(long phonenum) {
         this.phonenum = phonenum;
     }
+    
+    public void ShowMenu(int Choice){
+        
+    }  
 }
